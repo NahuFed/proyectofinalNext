@@ -4,9 +4,10 @@ import React, { useState } from "react";
 import { Film, Menu, X } from "lucide-react"
 
 const NavegacionComponent = ({ showAuthButtons = true }) => {
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
-   <nav className="border-b border-border bg-card/50 backdrop-blur-sm">
+    <nav className="border-b border-border bg-card/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -22,34 +23,32 @@ const NavegacionComponent = ({ showAuthButtons = true }) => {
 
           {/* links escritorio */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/movies" className="text-foreground hover:text-primary transition-colors">
-              Películas
-            </Link>
-            <Link href="/rankings" className="text-foreground hover:text-primary transition-colors">
-              Rankings
-            </Link>
-            <Link href="/profile" className="text-foreground hover:text-primary transition-colors">
-              Mi Perfil
-            </Link>
+            <Link href="/movies" className="text-foreground hover:text-primary transition-colors">Películas</Link>
+            <Link href="/rankings" className="text-foreground hover:text-primary transition-colors">Rankings</Link>
+            <Link href="/profile" className="text-foreground hover:text-primary transition-colors">Mi Perfil</Link>
           </div>
 
-          {/* Botones de login/register en escritorio */}
-          {showAuthButtons && (
-            <div className="hidden md:flex items-center space-x-4">
+          {/* Zona derecha escritorio */}
+          <div className="hidden md:flex items-center space-x-4">
+            {showAuthButtons ? (
+              <>
+                <Link href="/login" className="px-4 py-2 rounded-md text-foreground hover:text-primary transition-colors">
+                  Iniciar Sesión
+                </Link>
+                <Link href="/register" className="px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                  Registrarse
+                </Link>
+              </>
+            ) : (
+              // CERRAR SESIÓN cuando hay auth
               <Link
-                href="/login"
-                className="px-4 py-2 rounded-md text-foreground hover:text-primary transition-colors"
+                href="/logout"
+                className="px-4 py-2 rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors text-red-600"
               >
-                Iniciar Sesión
+                Cerrar sesión
               </Link>
-              <Link
-                href="/register"
-                className="px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-              >
-                Registrarse
-              </Link>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Botón hamburguesa en telefonos */}
           <button
@@ -64,43 +63,27 @@ const NavegacionComponent = ({ showAuthButtons = true }) => {
       {/* Menú desplegable en telefono */}
       {isOpen && (
         <div className="md:hidden border-t border-border bg-card/90 backdrop-blur-sm px-4 py-4 space-y-4">
-          <Link
-            href="/movies"
-            className="block text-foreground hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Películas
-          </Link>
-          <Link
-            href="/rankings"
-            className="block text-foreground hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Rankings
-          </Link>
-          <Link
-            href="/profile"
-            className="block text-foreground hover:text-primary transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Mi Perfil
-          </Link>
+          <Link href="/movies" className="block text-foreground hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Películas</Link>
+          <Link href="/rankings" className="block text-foreground hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Rankings</Link>
+          <Link href="/profile" className="block text-foreground hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Mi Perfil</Link>
 
-          {showAuthButtons && (
+          {showAuthButtons ? (
             <div className="space-y-2">
-              <Link
-                href="/login"
-                className="block px-4 py-2 rounded-md text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
+              <Link href="/login" className="block px-4 py-2 rounded-md text-foreground hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>
                 Iniciar Sesión
               </Link>
+              <Link href="/register" className="block px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors" onClick={() => setIsOpen(false)}>
+                Registrarse
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-2 ">
               <Link
-                href="/register"
-                className="block px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                href="/logout"
+                className="block px-4 py-2 rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors text-red-600"
                 onClick={() => setIsOpen(false)}
               >
-                Registrarse
+                Cerrar sesión
               </Link>
             </div>
           )}
