@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
 
-   // <Prueba />
+    {/* <Prueba />  */}
       <h1 className="text-center text-5xl font-bold m-5 p-2">
         Descubre el mundo del <span className="text-fuchsia-800">cine</span>{" "}
       </h1>
@@ -27,6 +27,7 @@ export default function Home() {
         {/* Aquí puedes agregar el componente CardsHome */}
         <CardsHome/>
         </div>
+    </div>
 
 
   );
