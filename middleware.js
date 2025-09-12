@@ -1,28 +1,49 @@
 import { NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
-const PROTECTED = ["/movies", "/perfil", "/ratings"];
+const COOKIE_NAME = "session";
+const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 
-export async function middleware(req) {
-  const { pathname } = req.nextUrl;
-  if (!PROTECTED.some((p) => pathname.startsWith(p))) return NextResponse.next();
+const PROTECTED = ["/movies", "/profile", "/rankings"]; 
 
-  const token = req.cookies.get("session")?.value;
-  if (!token) {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "Necesitas iniciar sesión");
-    return NextResponse.redirect(url);
-  }
-
+async function getUserFromToken(token) {
+  if (!token) return null;
   try {
-    const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
-    await jwtVerify(token, secret);
-    return NextResponse.next();
+    const { payload } = await jwtVerify(token, SECRET)
+    return payload;
   } catch {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "Sesión inválida o expirada");
-    return NextResponse.redirect(url);
+    return null;
   }
 }
 
-export const config = { matcher: ["/movies/:path*", "/perfil/:path*", "/ratings/:path*"] };
+export async function middleware(req) {
+  const { pathname, search } = req.nextUrl;
+  const token = req.cookies.get(COOKIE_NAME)?.value;
+  const user = await getUserFromToken(token);
+
+
+  if (pathname.startsWith("/login")) {
+    if (user) return NextResponse.redirect(new URL("/movies", req.url));
+    return NextResponse.next();
+  }
+
+  if (PROTECTED.some((p) => pathname.startsWith(p))) {
+    if (!user) {
+      const url = new URL("/login", req.url);
+      url.searchParams.set("error", "Necesitas iniciar sesión");
+      url.searchParams.set("next", pathname + search);
+      return NextResponse.redirect(url);
+    }
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [
+    "/login",
+    "/movies/:path*",
+    "/profile/:path*",
+    "/rankings/:path*",
+  ],
+};

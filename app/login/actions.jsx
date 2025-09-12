@@ -3,15 +3,18 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { SignJWT } from "jose";
-import { users } from "@/data/data";
-
+import { users } from "@/data/data"; // tu data mock
 
 function isEmail(email) {
   return typeof email === "string" && email.includes("@") && email.includes(".");
 }
 
 async function signJWT(payload) {
-  const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
+  const secretValue = process.env.AUTH_SECRET;
+  if (!secretValue) {
+    throw new Error("Falta AUTH_SECRET (definilo en .env)");
+  }
+  const secret = new TextEncoder().encode(secretValue);
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -20,21 +23,23 @@ async function signJWT(payload) {
 }
 
 export async function actionsLoginInicio(formData) {
-  const name = (formData.get("name") || "").toString().trim();
-  const email = (formData.get("email") || "").toString().trim();
+  const email = (formData.get("email") || "").toString().trim().toLowerCase();
   const password = (formData.get("password") || "").toString().trim();
 
-  if (!name) redirect(`/login?error=${encodeURIComponent("El nombre es obligatorio")}`);
   if (!isEmail(email)) redirect(`/login?error=${encodeURIComponent("El email no es válido")}`);
   if (!password) redirect(`/login?error=${encodeURIComponent("La contraseña es obligatoria")}`);
 
-  const user = users.find((u) => u.email === email);
-  if (!user) redirect(`/login?error=${encodeURIComponent("Usuario no encontrado")}`);
-  if (user.name !== name || user.password !== password) {
+  const user = users.find((u) => u.email?.toLowerCase() === email);
+  if (!user || user.password !== password) {
     redirect(`/login?error=${encodeURIComponent("Credenciales inválidas")}`);
   }
 
-  const token = await signJWT({ sub: user.id, name: user.name, email: user.email });
+  const token = await signJWT({
+    sub: String(user.id ?? user.email),
+    name: user.name ?? "",
+    email: user.email,
+    role: user.role ?? "user",
+  });
 
   cookies().set({
     name: "session",
@@ -43,8 +48,8 @@ export async function actionsLoginInicio(formData) {
     secure: true,
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: 60 * 60 * 24 * 7, // 7 días
   });
 
-  redirect(`/movies?ok=1&name=${encodeURIComponent(user.name)}`);
+  redirect(`/movies?ok=1`);
 }
