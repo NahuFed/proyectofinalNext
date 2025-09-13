@@ -3,7 +3,7 @@ import { actionsLoginInicio } from "./actions";
 import LoginForm from "@/components/auth/LoginForm";
 
 export default async function LoginPage({ searchParams }) {
-  const sp = searchParams || {};
+  const sp = (await searchParams) || {};
   const message =
     sp.ok === "1" ? "¡Inicio de sesión exitoso!" :
     sp.error ? sp.error : "";
