@@ -21,7 +21,7 @@ export default function Home() {
       </p>
       <div className="flex justify-center gap-4 m-5 p-2">
       <Link className="bg-fuchsia-800 p-2 rounded w-[200px] text-center" href={"/"}>Comenzar ahora</ Link>
-      <Link className="p-2 border rounded  w-[200px] text-center" href={'/'}>Explorar Peliculas</Link>
+      <Link className="p-2 border rounded  w-[200px] text-center" href={'/movies'}>Explorar Peliculas</Link>
       </div>
       <div className="m-5 p-2">
         {/* Aquí puedes agregar el componente CardsHome */}
