@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { SignJWT } from "jose";
-import { users } from "@/data/data"; // tu data mock
+import { users } from "@/data/data";
 
 function isEmail(email) {
   return typeof email === "string" && email.includes("@") && email.includes(".");
@@ -11,9 +11,7 @@ function isEmail(email) {
 
 async function signJWT(payload) {
   const secretValue = process.env.AUTH_SECRET;
-  if (!secretValue) {
-    throw new Error("Falta AUTH_SECRET (definilo en .env)");
-  }
+  if (!secretValue) throw new Error("Falta AUTH_SECRET (definilo en .env)");
   const secret = new TextEncoder().encode(secretValue);
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
@@ -41,15 +39,15 @@ export async function actionsLoginInicio(formData) {
     role: user.role ?? "user",
   });
 
-  cookies().set({
-    name: "session",
-    value: token,
+  const cookieStore = await cookies();
+  cookieStore.set("session", token, {
     httpOnly: true,
-    secure: true,
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7, // 7 días
+    
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 60 * 60 * 24 * 7, 
   });
 
-  redirect(`/movies?ok=1`);
+  redirect("/movies?ok=1");
 }

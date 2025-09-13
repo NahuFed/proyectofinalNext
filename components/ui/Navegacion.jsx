@@ -42,7 +42,7 @@ export default function NavegacionComponent() {
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <Link
-                href="/logout"
+                href="/api/logout"
                 className="px-4 py-2 rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors text-red-600"
               >
                 Cerrar sesión
@@ -80,7 +80,7 @@ export default function NavegacionComponent() {
           {user ? (
             <div className="space-y-2">
               <Link
-                href="/logout"
+                href="/api/logout"
                 className="block px-4 py-2 rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors text-red-600"
                 onClick={() => setIsOpen(false)}
               >
