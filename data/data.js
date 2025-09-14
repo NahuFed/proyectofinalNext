@@ -8,7 +8,7 @@ const movies = [
     synopsis:
       "Un ladrón especializado en robar secretos mediante sueños compartidos recibe la tarea de implantar una idea en la mente de un empresario.",
     cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
-    averageScore: 0,
+    averageScore: 8.8,
     image: "https://m.media-amazon.com/images/I/51K8ouYrHeL._AC_.jpg",
   },
   {
@@ -19,7 +19,7 @@ const movies = [
     synopsis:
       "Un hombre es encarcelado por un crimen que no cometió y encuentra amistad y esperanza mientras cumple su condena.",
     cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
-    averageScore: 0,
+    averageScore: 9.3,
     image: "https://m.media-amazon.com/images/I/519NBNHX5BL._AC_.jpg",
   },
   {
@@ -30,7 +30,7 @@ const movies = [
     synopsis:
       "La saga de la familia mafiosa Corleone y su lucha por mantener el poder y la lealtad dentro del crimen organizado.",
     cast: ["Marlon Brando", "Al Pacino", "James Caan"],
-    averageScore: 0,
+    averageScore: 9.2,
     image: "https://m.media-amazon.com/images/I/41+eK8zBwQL._AC_.jpg",
   },
   {
@@ -41,7 +41,7 @@ const movies = [
     synopsis:
       "Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
     cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
-    averageScore: 0,
+    averageScore: 8.6,
     image: "https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SY679_.jpg",
   },
   {
@@ -52,7 +52,7 @@ const movies = [
     synopsis:
       "Historias entrelazadas de criminales en Los Ángeles que muestran violencia, humor y redención.",
     cast: ["John Travolta", "Samuel L. Jackson", "Uma Thurman"],
-    averageScore: 0,
+    averageScore: 8.9,
     image: "https://m.media-amazon.com/images/I/71c05lTE03L._AC_SY679_.jpg",
   },
   {
@@ -63,7 +63,7 @@ const movies = [
     synopsis:
       "Batman debe enfrentarse al Joker, un criminal caótico que amenaza con sumir a Gotham en el caos.",
     cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
-    averageScore: 0,
+    averageScore: 9.0,
     image: "https://m.media-amazon.com/images/I/51k0qa6qD8L._AC_.jpg",
   },
   {
@@ -74,7 +74,7 @@ const movies = [
     synopsis:
       "La vida extraordinaria de Forrest Gump, un hombre con un cociente intelectual bajo que presencia hechos históricos mientras sigue su corazón.",
     cast: ["Tom Hanks", "Robin Wright", "Gary Sinise"],
-    averageScore: 0,
+    averageScore: 8.8,
     image: "https://m.media-amazon.com/images/I/61Kc0xwXQeL._AC_SY679_.jpg",
   },
   {
@@ -85,7 +85,7 @@ const movies = [
     synopsis:
       "Un hacker descubre que el mundo que conoce es una simulación creada por máquinas y se une a la resistencia humana.",
     cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
-    averageScore: 0,
+    averageScore: 8.7,
     image: "https://m.media-amazon.com/images/I/51vpnbwFHrL._AC_.jpg",
   },
   {
@@ -96,7 +96,7 @@ const movies = [
     synopsis:
       "Un general romano traicionado busca venganza mientras se convierte en gladiador en el Coliseo.",
     cast: ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"],
-    averageScore: 0,
+    averageScore: 8.5,
     image: "https://m.media-amazon.com/images/I/51A4oFqhdGL._AC_.jpg",
   },
   {
@@ -107,7 +107,7 @@ const movies = [
     synopsis:
       "Historia de amor entre Jack y Rose durante el trágico hundimiento del RMS Titanic.",
     cast: ["Leonardo DiCaprio", "Kate Winslet", "Billy Zane"],
-    averageScore: 0,
+    averageScore: 7.9,
     image: "https://m.media-amazon.com/images/I/71rNJQ2g-EL._AC_SY679_.jpg",
   },
 ];
