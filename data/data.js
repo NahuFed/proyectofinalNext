@@ -8,8 +8,10 @@ const movies = [
     synopsis:
       "Un ladrón especializado en robar secretos mediante sueños compartidos recibe la tarea de implantar una idea en la mente de un empresario.",
     cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
+    director: "Christopher Nolan",
     averageScore: 0,
-    image: "https://m.media-amazon.com/images/I/51K8ouYrHeL._AC_.jpg",
+    runtime: 148,
+    image: "https://www.originalfilmart.com/cdn/shop/products/inception_2010_imax_original_film_art_a_1024x1024.jpg?v=1551890316",
   },
   {
     id: "m002",
@@ -19,7 +21,9 @@ const movies = [
     synopsis:
       "Un hombre es encarcelado por un crimen que no cometió y encuentra amistad y esperanza mientras cumple su condena.",
     cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
+    director: "Frank Darabont",
     averageScore: 0,
+    runtime: 142,
     image: "https://m.media-amazon.com/images/I/519NBNHX5BL._AC_.jpg",
   },
   {
@@ -30,8 +34,10 @@ const movies = [
     synopsis:
       "La saga de la familia mafiosa Corleone y su lucha por mantener el poder y la lealtad dentro del crimen organizado.",
     cast: ["Marlon Brando", "Al Pacino", "James Caan"],
+    director: "Francis Ford Coppola",
     averageScore: 0,
-    image: "https://m.media-amazon.com/images/I/41+eK8zBwQL._AC_.jpg",
+    runtime: 175,
+    image: "https://ca-times.brightspotcdn.com/dims4/default/e21ee25/2147483647/strip/false/crop/2093x3000+0+0/resize/1037x1486!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F47%2F95%2Fcbf137037b833a53a724fde3f53e%2Fcfdj8emgq7504ddbn1ibedbziqes-ufxmz-ypi0gordml8oigvx-qxnfyjdexxje48b9jsnhzr2hbbtg9-5bm2ewo-sfvcb9svtpufonjqohy-raixysjlgk7fagt3voiify9grgz0pkj-sysmn1pfblqffyiedjz8nszvhrheowg2imuyrmeklodsplgwx3wmznmclm-gx-cvc7m0lf7h7crd5meu1oztvsd9po-e1pldrzmjwobcwk9h7avlf0y4ew56xkel9filhfyidkf9rpndq4ic7-snlvnin85poimejwzyp6rq-q8qsqvmlvl2xaq3rsy-7axvtxqcpqinvjubaglw5risa6bqkfrpqowvdt29rhgoxnbsbi3dnwzldfjuimuizsg2hody3cu-y1kgk",
   },
   {
     id: "m004",
@@ -41,7 +47,9 @@ const movies = [
     synopsis:
       "Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
     cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+    director: "Christopher Nolan",
     averageScore: 0,
+    runtime: 169,
     image: "https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SY679_.jpg",
   },
   {
@@ -52,7 +60,9 @@ const movies = [
     synopsis:
       "Historias entrelazadas de criminales en Los Ángeles que muestran violencia, humor y redención.",
     cast: ["John Travolta", "Samuel L. Jackson", "Uma Thurman"],
+    director: "Quentin Tarantino",
     averageScore: 0,
+    runtime: 154,
     image: "https://m.media-amazon.com/images/I/71c05lTE03L._AC_SY679_.jpg",
   },
   {
@@ -63,8 +73,10 @@ const movies = [
     synopsis:
       "Batman debe enfrentarse al Joker, un criminal caótico que amenaza con sumir a Gotham en el caos.",
     cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
+    director: "Christopher Nolan",
     averageScore: 0,
-    image: "https://m.media-amazon.com/images/I/51k0qa6qD8L._AC_.jpg",
+    runtime: 152,
+    image: "https://es.web.img2.acsta.net/medias/nmedia/18/66/74/01/20350623.jpg",
   },
   {
     id: "m007",
@@ -74,8 +86,10 @@ const movies = [
     synopsis:
       "La vida extraordinaria de Forrest Gump, un hombre con un cociente intelectual bajo que presencia hechos históricos mientras sigue su corazón.",
     cast: ["Tom Hanks", "Robin Wright", "Gary Sinise"],
+    director: "Robert Zemeckis",
     averageScore: 0,
-    image: "https://m.media-amazon.com/images/I/61Kc0xwXQeL._AC_SY679_.jpg",
+    runtime: 142,
+    image: "https://es.web.img3.acsta.net/pictures/bzp/01/10568.jpg",
   },
   {
     id: "m008",
@@ -85,7 +99,9 @@ const movies = [
     synopsis:
       "Un hacker descubre que el mundo que conoce es una simulación creada por máquinas y se une a la resistencia humana.",
     cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
+    director: "Lana Wachowski, Lilly Wachowski",
     averageScore: 0,
+    runtime: 136,
     image: "https://m.media-amazon.com/images/I/51vpnbwFHrL._AC_.jpg",
   },
   {
@@ -96,8 +112,10 @@ const movies = [
     synopsis:
       "Un general romano traicionado busca venganza mientras se convierte en gladiador en el Coliseo.",
     cast: ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"],
+    director: "Ridley Scott",
     averageScore: 0,
-    image: "https://m.media-amazon.com/images/I/51A4oFqhdGL._AC_.jpg",
+    runtime: 155,
+    image: "https://es.web.img3.acsta.net/medias/nmedia/18/70/92/02/20149073.jpg",
   },
   {
     id: "m010",
@@ -107,10 +125,144 @@ const movies = [
     synopsis:
       "Historia de amor entre Jack y Rose durante el trágico hundimiento del RMS Titanic.",
     cast: ["Leonardo DiCaprio", "Kate Winslet", "Billy Zane"],
+    director: "James Cameron",
     averageScore: 0,
-    image: "https://m.media-amazon.com/images/I/71rNJQ2g-EL._AC_SY679_.jpg",
+    runtime: 195,
+    image: "https://i.pinimg.com/736x/75/1f/54/751f5482facac19cff49ca5e0a0861cf.jpg",
+  },
+  {
+    id: "m011",
+    title: "Oppenheimer",
+    year: 2023,
+    genre: ["Drama", "History"],
+    synopsis:
+      "La vida del físico J. Robert Oppenheimer y su papel clave en la creación de la bomba atómica.",
+    cast: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr."],
+    director: "Christopher Nolan",
+    averageScore: 0,
+    runtime: 180,
+    image: "https://es.web.img3.acsta.net/pictures/23/05/25/13/41/1835431.jpg",
+  },
+  {
+    id: "m012",
+    title: "Barbie",
+    year: 2023,
+    genre: ["Comedy", "Fantasy"],
+    synopsis:
+      "Barbie y Ken exploran el mundo real tras descubrir que la vida en Barbieland no es lo que parece.",
+    cast: ["Margot Robbie", "Ryan Gosling", "America Ferrera"],
+    director: "Greta Gerwig",
+    averageScore: 0,
+    runtime: 114,
+    image: "https://es.web.img2.acsta.net/pictures/23/07/20/11/29/5479684.jpg",
+  },
+  {
+    id: "m013",
+    title: "Dune: Part Two",
+    year: 2024,
+    genre: ["Adventure", "Sci-Fi"],
+    synopsis:
+      "Paul Atreides une fuerzas con los Fremen para vengar a su familia y liberar Arrakis de la opresión.",
+    cast: ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson"],
+    director: "Denis Villeneuve",
+    averageScore: 0,
+    runtime: 166,
+    image: "https://m.media-amazon.com/images/M/MV5BNzBiMTQ0YjMtZDRhMC00ZDU4LTk3MDMtNWQxOGMwMjQzYjc4XkEyXkFqcGc@._V1_.jpg",
+  },
+  {
+    id: "m014",
+    title: "Spider-Man: Across the Spider-Verse",
+    year: 2023,
+    genre: ["Animation", "Action", "Adventure"],
+    synopsis:
+      "Miles Morales se embarca en otra aventura a través del multiverso de Spider-People.",
+    cast: ["Shameik Moore", "Hailee Steinfeld", "Oscar Isaac"],
+    director: "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson",
+    averageScore: 0,
+    runtime: 140,
+    image: "https://image.tmdb.org/t/p/original/qqXTerrQYwg9pIMhb1GFbxa3WUz.jpg",
+  },
+  {
+    id: "m015",
+    title: "The Batman",
+    year: 2022,
+    genre: ["Action", "Crime", "Drama"],
+    synopsis:
+      "En sus primeros años como Batman, Bruce Wayne investiga una serie de asesinatos cometidos por el Acertijo.",
+    cast: ["Robert Pattinson", "Zoë Kravitz", "Paul Dano"],
+    director: "Matt Reeves",
+    averageScore: 0,
+    runtime: 176,
+    image: "https://es.web.img3.acsta.net/pictures/22/01/27/16/40/2914301.jpg",
+  },
+  {
+    id: "m016",
+    title: "Top Gun: Maverick",
+    year: 2022,
+    genre: ["Action", "Drama"],
+    synopsis:
+      "Pete 'Maverick' Mitchell regresa como instructor para entrenar a una nueva generación de pilotos.",
+    cast: ["Tom Cruise", "Miles Teller", "Jennifer Connelly"],
+    director: "Joseph Kosinski",
+    averageScore: 0,
+    runtime: 130,
+    image: "https://es.web.img2.acsta.net/pictures/22/03/29/15/57/1533124.jpg",
+  },
+  {
+    id: "m017",
+    title: "Guardians of the Galaxy Vol. 3",
+    year: 2023,
+    genre: ["Action", "Adventure", "Comedy"],
+    synopsis:
+      "Los Guardianes deben enfrentar una nueva amenaza mientras Rocket descubre los secretos de su pasado.",
+    cast: ["Chris Pratt", "Zoe Saldaña", "Bradley Cooper"],
+    director: "James Gunn",
+    averageScore: 0,
+    runtime: 150,
+    image: "https://es.web.img2.acsta.net/pictures/23/02/13/13/48/4422250.jpg",
+  },
+  {
+    id: "m018",
+    title: "Killers of the Flower Moon",
+    year: 2023,
+    genre: ["Crime", "Drama", "History"],
+    synopsis:
+      "Investigación sobre una serie de asesinatos de miembros de la nación Osage en los años 20.",
+    cast: ["Leonardo DiCaprio", "Robert De Niro", "Lily Gladstone"],
+    director: "Martin Scorsese",
+    averageScore: 0,
+    runtime: 206,
+    image: "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/3BFVYJ2YQZDNPD54MVLPRPRSX4.png",
+  },
+  {
+    id: "m019",
+    title: "John Wick: Chapter 4",
+    year: 2023,
+    genre: ["Action", "Thriller"],
+    synopsis:
+      "John Wick busca su libertad enfrentando a enemigos poderosos en todo el mundo.",
+    cast: ["Keanu Reeves", "Donnie Yen", "Bill Skarsgård"],
+    director: "Chad Stahelski",
+    averageScore: 0,
+    runtime: 169,
+    image: "https://image.tmdb.org/t/p/original/mj2Z9HnRSIEk3n7yVPoOY4Uzzfh.jpg",
+  },
+  {
+    id: "m020",
+    title: "Poor Things",
+    year: 2023,
+    genre: ["Comedy", "Drama", "Fantasy"],
+    synopsis:
+      "Una joven es devuelta a la vida por un científico poco ortodoxo y comienza un viaje de autodescubrimiento.",
+    cast: ["Emma Stone", "Mark Ruffalo", "Willem Dafoe"],
+    director: "Yorgos Lanthimos",
+    averageScore: 0,
+    runtime: 141,
+    image: "https://m.media-amazon.com/images/I/81xmFznkhWL._UF894,1000_QL80_.jpg",
   },
 ];
+
+
 
 
 // ================== USERS ==================
