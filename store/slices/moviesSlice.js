@@ -1,5 +1,46 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { movies, users, scores, comments } from "@/data/data";
+import { utils, reviewsAPI } from "@/services/api";
+
+//  ASYNC THUNKS para API calls
+export const fetchMoviesWithRatings = createAsyncThunk(
+  'movies/fetchMoviesWithRatings',
+  async () => {
+    try {
+      const moviesWithRatings = await utils.getMoviesWithRatings();
+      return moviesWithRatings;
+    } catch (error) {
+      // Fallback a datos locales si falla la API
+      console.warn('API fallback: using local data', error);
+      return movies.map((m) => ({
+        ...m,
+        averageScore: calculateAverage(m.id, scores),
+        reviewsCount: 0
+      }));
+    }
+  }
+);
+
+export const addReview = createAsyncThunk(
+  'movies/addReview',
+  async ({ movieId, userId, rating, comment }) => {
+    const newReview = await reviewsAPI.create({
+      userId,
+      movieId,
+      rating,
+      comment
+    });
+    
+    // Recalcular rating de la película
+    const updatedRating = await utils.calculateMovieRating(movieId);
+    
+    return {
+      review: newReview,
+      movieId,
+      updatedRating
+    };
+  }
+);
 
 //  HELPERS 
 const calculateAverage = (movieId, scores) => {
@@ -16,10 +57,14 @@ const initialState = {
   movies: movies.map((m) => ({
     ...m,
     averageScore: calculateAverage(m.id, scores),
+    reviewsCount: 0
   })),
   users,
   scores,
   comments,
+  loading: false,
+  error: null,
+  usingAPI: false // Flag para saber si estamos usando API o datos locales
 };
 
 //  SLICE 
@@ -87,6 +132,44 @@ const moviesSlice = createSlice({
       state.comments.push({ userId, movieId, text: text.trim() });
     },
   },
+  extraReducers: (builder) => {
+    builder
+      // fetchMoviesWithRatings
+      .addCase(fetchMoviesWithRatings.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchMoviesWithRatings.fulfilled, (state, action) => {
+        state.loading = false;
+        state.movies = action.payload;
+        state.usingAPI = true;
+      })
+      .addCase(fetchMoviesWithRatings.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        state.usingAPI = false;
+      })
+      // addReview
+      .addCase(addReview.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addReview.fulfilled, (state, action) => {
+        state.loading = false;
+        const { movieId, updatedRating } = action.payload;
+        
+        // Actualizar rating de la película
+        const movie = state.movies.find((m) => m.id === movieId);
+        if (movie) {
+          movie.averageScore = updatedRating;
+          movie.reviewsCount = (movie.reviewsCount || 0) + 1;
+        }
+      })
+      .addCase(addReview.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 //  SELECTORS 
@@ -117,5 +200,7 @@ export const hasUserRatedMovie = (userId, movieId) =>
 
 export const { searchMovies, resetMovies, addRating, addComment } =
   moviesSlice.actions;
+
+export { fetchMoviesWithRatings, addReview };
 
 export default moviesSlice.reducer;
