@@ -1,4 +1,4 @@
-// ================== MOVIES ==================
+// ================== MOVIES =======
 const movies = [
   {
     id: "m001",
@@ -9,7 +9,7 @@ const movies = [
       "Un ladrón especializado en robar secretos mediante sueños compartidos recibe la tarea de implantar una idea en la mente de un empresario.",
     cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
     director: "Christopher Nolan",
-    averageScore: 0,
+    averageScore: 8.8,
     runtime: 148,
     image: "https://www.originalfilmart.com/cdn/shop/products/inception_2010_imax_original_film_art_a_1024x1024.jpg?v=1551890316",
   },
@@ -22,7 +22,7 @@ const movies = [
       "Un hombre es encarcelado por un crimen que no cometió y encuentra amistad y esperanza mientras cumple su condena.",
     cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
     director: "Frank Darabont",
-    averageScore: 0,
+    averageScore: 9.3,
     runtime: 142,
     image: "https://m.media-amazon.com/images/I/519NBNHX5BL._AC_.jpg",
   },
@@ -35,7 +35,7 @@ const movies = [
       "La saga de la familia mafiosa Corleone y su lucha por mantener el poder y la lealtad dentro del crimen organizado.",
     cast: ["Marlon Brando", "Al Pacino", "James Caan"],
     director: "Francis Ford Coppola",
-    averageScore: 0,
+    averageScore: 9.2,
     runtime: 175,
     image: "https://ca-times.brightspotcdn.com/dims4/default/e21ee25/2147483647/strip/false/crop/2093x3000+0+0/resize/1037x1486!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F47%2F95%2Fcbf137037b833a53a724fde3f53e%2Fcfdj8emgq7504ddbn1ibedbziqes-ufxmz-ypi0gordml8oigvx-qxnfyjdexxje48b9jsnhzr2hbbtg9-5bm2ewo-sfvcb9svtpufonjqohy-raixysjlgk7fagt3voiify9grgz0pkj-sysmn1pfblqffyiedjz8nszvhrheowg2imuyrmeklodsplgwx3wmznmclm-gx-cvc7m0lf7h7crd5meu1oztvsd9po-e1pldrzmjwobcwk9h7avlf0y4ew56xkel9filhfyidkf9rpndq4ic7-snlvnin85poimejwzyp6rq-q8qsqvmlvl2xaq3rsy-7axvtxqcpqinvjubaglw5risa6bqkfrpqowvdt29rhgoxnbsbi3dnwzldfjuimuizsg2hody3cu-y1kgk",
   },
@@ -48,7 +48,7 @@ const movies = [
       "Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
     cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
     director: "Christopher Nolan",
-    averageScore: 0,
+    averageScore: 8.6,
     runtime: 169,
     image: "https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SY679_.jpg",
   },
@@ -61,7 +61,7 @@ const movies = [
       "Historias entrelazadas de criminales en Los Ángeles que muestran violencia, humor y redención.",
     cast: ["John Travolta", "Samuel L. Jackson", "Uma Thurman"],
     director: "Quentin Tarantino",
-    averageScore: 0,
+    averageScore: 8.9,
     runtime: 154,
     image: "https://m.media-amazon.com/images/I/71c05lTE03L._AC_SY679_.jpg",
   },
@@ -74,7 +74,7 @@ const movies = [
       "Batman debe enfrentarse al Joker, un criminal caótico que amenaza con sumir a Gotham en el caos.",
     cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
     director: "Christopher Nolan",
-    averageScore: 0,
+    averageScore: 9.0,
     runtime: 152,
     image: "https://es.web.img2.acsta.net/medias/nmedia/18/66/74/01/20350623.jpg",
   },
@@ -87,7 +87,7 @@ const movies = [
       "La vida extraordinaria de Forrest Gump, un hombre con un cociente intelectual bajo que presencia hechos históricos mientras sigue su corazón.",
     cast: ["Tom Hanks", "Robin Wright", "Gary Sinise"],
     director: "Robert Zemeckis",
-    averageScore: 0,
+    averageScore: 8.8,
     runtime: 142,
     image: "https://es.web.img3.acsta.net/pictures/bzp/01/10568.jpg",
   },
@@ -100,7 +100,7 @@ const movies = [
       "Un hacker descubre que el mundo que conoce es una simulación creada por máquinas y se une a la resistencia humana.",
     cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
     director: "Lana Wachowski, Lilly Wachowski",
-    averageScore: 0,
+    averageScore: 10.0,
     runtime: 136,
     image: "https://m.media-amazon.com/images/I/51vpnbwFHrL._AC_.jpg",
   },
@@ -113,7 +113,7 @@ const movies = [
       "Un general romano traicionado busca venganza mientras se convierte en gladiador en el Coliseo.",
     cast: ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"],
     director: "Ridley Scott",
-    averageScore: 0,
+    averageScore: 8.0,
     runtime: 155,
     image: "https://es.web.img3.acsta.net/medias/nmedia/18/70/92/02/20149073.jpg",
   },
@@ -126,7 +126,7 @@ const movies = [
       "Historia de amor entre Jack y Rose durante el trágico hundimiento del RMS Titanic.",
     cast: ["Leonardo DiCaprio", "Kate Winslet", "Billy Zane"],
     director: "James Cameron",
-    averageScore: 0,
+    averageScore: 8.0,
     runtime: 195,
     image: "https://i.pinimg.com/736x/75/1f/54/751f5482facac19cff49ca5e0a0861cf.jpg",
   },
@@ -139,7 +139,7 @@ const movies = [
       "La vida del físico J. Robert Oppenheimer y su papel clave en la creación de la bomba atómica.",
     cast: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr."],
     director: "Christopher Nolan",
-    averageScore: 0,
+    averageScore: 8.7,
     runtime: 180,
     image: "https://es.web.img3.acsta.net/pictures/23/05/25/13/41/1835431.jpg",
   },
@@ -302,20 +302,39 @@ const users = [
 
 // ================== SCORES ==================
 const scores = [
-  { userId: "u001", movieId: "m001", score: 5 },
-  { userId: "u001", movieId: "m002", score: 4 },
-  { userId: "u001", movieId: "m003", score: 5 },
-  { userId: "u001", movieId: "m004", score: 4 },
-  { userId: "u001", movieId: "m005", score: 3 },
-  { userId: "u002", movieId: "m001", score: 2 },
-  { userId: "u002", movieId: "m006", score: 1 },
-  { userId: "u002", movieId: "m007", score: 2 },
-  { userId: "u002", movieId: "m008", score: 5 },
-  { userId: "u002", movieId: "m010", score: 4 },
-  { userId: "u003", movieId: "m002", score: 1 },
-  { userId: "u003", movieId: "m003", score: 3 },
-  { userId: "u003", movieId: "m004", score: 1 },
-  { userId: "u003", movieId: "m009", score: 4 },
+  { userId: "u001", movieId: "m001", score: 10 }, // Inception
+  { userId: "u001", movieId: "m002", score: 8 }, // Shawshank
+  { userId: "u001", movieId: "m003", score: 10 }, // Godfather
+  { userId: "u001", movieId: "m004", score: 8 }, // Interstellar
+  { userId: "u001", movieId: "m005", score: 6 }, // Pulp Fiction
+  { userId: "u002", movieId: "m001", score: 4 }, // Inception
+  { userId: "u002", movieId: "m006", score: 2 }, // Dark Knight
+  { userId: "u002", movieId: "m007", score: 4 }, // Forrest Gump
+  { userId: "u002", movieId: "m008", score: 10 }, // Matrix
+  { userId: "u002", movieId: "m010", score: 8 }, // Titanic
+  { userId: "u003", movieId: "m002", score: 2 }, // Shawshank
+  { userId: "u003", movieId: "m003", score: 6 }, // Godfather
+  { userId: "u003", movieId: "m004", score: 2 }, // Interstellar
+  { userId: "u003", movieId: "m009", score: 8 }, // Gladiator
+  { userId: "u004", movieId: "m007", score: 8 }, // Forrest Gump
+  { userId: "u004", movieId: "m008", score: 10 }, // Matrix  
+  { userId: "u005", movieId: "m008", score: 10 }, // Matrix
+  { userId: "u004", movieId: "m009", score: 8 }, // Gladiator
+  { userId: "u005", movieId: "m010", score: 8 }, // Titanic
+  // Agregando más puntuaciones para películas clásicas
+  { userId: "u001", movieId: "m006", score: 9 }, // Dark Knight
+  { userId: "u003", movieId: "m006", score: 9 }, // Dark Knight
+  { userId: "u004", movieId: "m006", score: 10 }, // Dark Knight
+  { userId: "u005", movieId: "m006", score: 9 }, // Dark Knight
+  { userId: "u002", movieId: "m003", score: 9 }, // Godfather
+  { userId: "u004", movieId: "m003", score: 10 }, // Godfather
+  { userId: "u005", movieId: "m003", score: 9 }, // Godfather
+  { userId: "u002", movieId: "m002", score: 9 }, // Shawshank
+  { userId: "u004", movieId: "m002", score: 10 }, // Shawshank
+  { userId: "u005", movieId: "m002", score: 9 }, // Shawshank
+  { userId: "u003", movieId: "m005", score: 9 }, // Pulp Fiction
+  { userId: "u004", movieId: "m005", score: 8 }, // Pulp Fiction
+  { userId: "u005", movieId: "m005", score: 9 }, // Pulp Fiction
 ];
 
 // ================== COMMENTS ==================

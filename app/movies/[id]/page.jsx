@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { movies, comments, users } from '@/data/data';
+import { useSelector } from 'react-redux';
+import { comments, users } from '@/data/data';
 import InteractiveStarRating from '@/components/ui/InteractiveStarRating';
 import StarRating from '@/components/ui/StarRating';
 import { Calendar, Clock, Star, User, MessageCircle } from 'lucide-react';
@@ -11,7 +12,8 @@ const MovieDetailPage = () => {
   const params = useParams();
   const movieId = params.id;
   
-  // Buscar la película
+  // Usar Redux para obtener la película (con puntuación calculada)
+  const movies = useSelector((state) => state.movies.movies);
   const movie = movies.find(m => m.id === movieId);
   
   // Estado para la nueva calificación y reseña
@@ -81,7 +83,7 @@ const MovieDetailPage = () => {
               />
               <div className="absolute top-4 right-4 bg-black/70 rounded-full px-3 py-2 flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                <span className="text-white font-semibold">{movie.averageScore}</span>
+                <span className="text-white font-semibold">{movie.averageScore.toFixed(1)}</span>
               </div>
             </div>
           </div>
