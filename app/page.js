@@ -1,5 +1,6 @@
 
 import CardsHome from "@/components/general/CardsHome";
+import MoviesGrid from "@/components/general/MoviesGrid";
 import Link from "next/link";
 //import Prueba from "@/components/Prueba";
 
@@ -24,9 +25,12 @@ export default function Home() {
       <Link className="p-2 border rounded  w-[200px] text-center" href={'/movies'}>Explorar Peliculas</Link>
       </div>
       <div className="m-5 p-2">
-        {/* Aquí puedes agregar el componente CardsHome */}
+        {/* Características principales */}
         <CardsHome/>
-        </div>
+      </div>
+      
+      {/* Grid de películas populares */}
+      <MoviesGrid/>
     </div>
 
 
