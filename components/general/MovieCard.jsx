@@ -1,99 +1,73 @@
-'use client';
+"use client";
+import Link from "next/link";
+import { Star, Clock, MessageSquareText } from "lucide-react";
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import StarRating from '../ui/StarRating';
-import { Calendar, Clock, Star } from 'lucide-react';
+export function MovieCard({ movie: m }) {
+  const rating =
+    typeof m.averageScore === "number" && m.averageScore > 0
+      ? m.averageScore.toFixed(1)
+      : null;
 
-const MovieCard = ({ 
-  id,
-  title = "Avatar: The Way of Water", 
-  year = 2022, 
-  duration = "192 min", 
-  genre = "Acción, Aventura, Sci-Fi",
-  poster = "/placeholder-movie.jpg",
-  averageRating = 8.4,
-  totalReviews = 1245 
-}) => {
-  const router = useRouter();
+  const shownGenres = Array.isArray(m.genre) ? m.genre.slice(0, 2) : [];
+  const remaining = Array.isArray(m.genre) ? m.genre.length - shownGenres.length : 0;
+  const runtimeText = typeof m.runtime === "number" ? `${m.runtime} min` : null;
+  const reviewsCount = Array.isArray(m.reviews) ? m.reviews.length : null;
 
-  const handleViewMore = () => {
-    router.push(`/movies/${id}`);
-  };
   return (
-    <div className="bg-zinc-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 hover:bg-zinc-700 transition-all duration-300 group">
-      {/* Poster Image */}
-      <div className="relative h-64 bg-zinc-700 flex items-center justify-center">
-        {poster ? (
-          <img 
-            src={poster} 
-            alt={title}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'flex';
-            }}
+    <Link
+      href={`/movies/${m.id}`}
+      className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400 rounded-xl"
+      aria-label={`Ver detalles de ${m.title}`}
+    >
+      <article className="bg-card/40 border border-border/60 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-black/20 transition-all duration-300 group-hover:scale-[1.01]">
+        <div className="relative aspect-[16/9] overflow-hidden bg-black/30">
+          <img
+            src={m.image}
+            alt={m.title}
+            className="h-full w-full object-cover transform group-hover:scale-[1.03] transition-transform duration-300"
+            loading="lazy"
           />
-        ) : null}
-        
-        <div 
-          className="text-zinc-500 flex items-center justify-center absolute inset-0"
-          style={{ display: poster ? 'none' : 'flex' }}
-        >
-          <Star className="h-16 w-16" />
-        </div>
-        
-        {/* Rating Badge */}
-        <div className="absolute top-2 right-2 bg-black/70 rounded-full px-2 py-1 flex items-center gap-1">
-          <Star className="h-3 w-3 text-yellow-400 fill-current" />
-          <span className="text-white text-sm font-semibold">{averageRating}</span>
-        </div>
-      </div>
-
-      {/* Movie Info */}
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-fuchsia-300 transition-colors">
-          {title}
-        </h3>
-        
-        <div className="flex items-center gap-4 text-zinc-400 text-sm mb-3">
-          <div className="flex items-center gap-1">
-            <Calendar className="h-3 w-3" />
-            <span>{year}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock className="h-3 w-3" />
-            <span>{duration}</span>
-          </div>
+          {rating && (
+            <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-black/70 backdrop-blur px-2 py-1 text-sm">
+              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <span className="font-semibold">{rating}</span>
+            </div>
+          )}
         </div>
 
-        <p className="text-zinc-300 text-sm mb-3 line-clamp-2">
-          {genre}
-        </p>
+        <div className="p-4">
+          <h3 className="text-xl font-semibold leading-tight line-clamp-1 group-hover:text-fuchsia-600">
+            {m.title}
+          </h3>
+          <p className="mt-1 text-sm text-white/70">
+            {m.year}{m.director ? <span> • {m.director}</span> : null}
+          </p>
 
-        {/* Star Rating Component */}
-        <div className="flex items-center justify-between">
-          <div className="flex flex-col">
-            <StarRating 
-              rating={averageRating} 
-              size="sm"
-              showLabel={true}
-            />
-            <span className="text-zinc-400 text-xs mt-1">
-              {totalReviews} reseñas
-            </span>
-          </div>
-          
-          <button 
-            onClick={handleViewMore}
-            className="bg-fuchsia-800 hover:bg-fuchsia-700 text-white px-3 py-1 rounded text-sm transition-colors"
-          >
-            Ver más
-          </button>
+          {shownGenres.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {shownGenres.map((g) => (
+                <span key={g} className="inline-block rounded-md border border-border/70 bg-muted/30 px-2 py-1 text-xs">
+                  {g}
+                </span>
+              ))}
+              {remaining > 0 && (
+                <span className="inline-block rounded-md border border-border/70 bg-muted/30 px-2 py-1 text-xs">+{remaining}</span>
+              )}
+            </div>
+          )}
+
+          {(runtimeText || reviewsCount !== null) && (
+            <div className="mt-4 flex items-center justify-between text-xs text-white/70">
+              <div className="flex items-center gap-1">
+                {runtimeText && (<><Clock className="w-4 h-4" /><span>{runtimeText}</span></>)}
+              </div>
+              <div className="flex items-center gap-1">
+                {reviewsCount !== null && (<><MessageSquareText className="w-4 h-4" /><span>{reviewsCount} reseña{reviewsCount === 1 ? "" : "s"}</span></>)}
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-    </div>
+      </article>
+    </Link>
   );
-};
-
-export default MovieCard;
+}
