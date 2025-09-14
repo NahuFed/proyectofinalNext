@@ -36,7 +36,7 @@ export function MovieCard({ movie: m }) {
         </div>
 
         <div className="p-4">
-          <h3 className="text-xl font-semibold leading-tight line-clamp-1 group-hover:text-white/90">
+          <h3 className="text-xl font-semibold leading-tight line-clamp-1 group-hover:text-fuchsia-600">
             {m.title}
           </h3>
           <p className="mt-1 text-sm text-white/70">
