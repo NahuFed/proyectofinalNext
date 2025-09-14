@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "json-server": "json-server --watch db.json --port 3001",
+    "dev:all": "concurrently \"npm run dev\" \"npm run json-server\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
@@ -20,8 +22,10 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.13",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
+    "json-server": "^1.0.0-beta.3",
     "lightningcss": "^1.30.1",
     "tailwindcss": "^4"
   }

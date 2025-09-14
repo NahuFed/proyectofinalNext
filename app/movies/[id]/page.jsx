@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useSelector } from 'react-redux';
-import { comments, users } from '@/data/data';
+import { reviewsAPI, utils } from '@/services/api';
 import InteractiveStarRating from '@/components/ui/InteractiveStarRating';
 import StarRating from '@/components/ui/StarRating';
 import { Calendar, Clock, Star, User, MessageCircle } from 'lucide-react';
@@ -12,17 +12,45 @@ const MovieDetailPage = () => {
   const params = useParams();
   const movieId = params.id;
   
-  // Usar Redux para obtener la película (con puntuación calculada)
+  // Usar Redux para obtener la película básica
   const movies = useSelector((state) => state.movies.movies);
   const movie = movies.find(m => m.id === movieId);
   
-  // Estado para la nueva calificación y reseña
+  // Estados para datos de la API
+  const [movieReviews, setMovieReviews] = useState([]);
+  const [calculatedRating, setCalculatedRating] = useState(0);
+  const [loading, setLoading] = useState(true);
+  
+  // Estados para la nueva calificación y reseña
   const [userRating, setUserRating] = useState(0);
   const [userReview, setUserReview] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // Obtener comentarios de esta película
-  const movieComments = comments.filter(comment => comment.movieId === movieId);
+  // Cargar reseñas al montar el componente
+  useEffect(() => {
+    const loadMovieData = async () => {
+      try {
+        setLoading(true);
+        const reviews = await reviewsAPI.getByMovieId(movieId);
+        setMovieReviews(reviews);
+        
+        // Calcular rating promedio
+        const avgRating = await utils.calculateMovieRating(movieId);
+        setCalculatedRating(avgRating);
+      } catch (error) {
+        console.error('Error loading movie data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (movieId) {
+      loadMovieData();
+    }
+  }, [movieId]);
+  
+  // Obtener comentarios de esta película (mantenemos comentarios legacy)
+  const movieComments = movieReviews;
   
   if (!movie) {
     return (
@@ -48,21 +76,33 @@ const MovieDetailPage = () => {
     
     setIsSubmitting(true);
     
-    // Simular envío de reseña
-    setTimeout(() => {
-      console.log('Nueva reseña:', {
-        movieId: movie.id,
+    try {
+      // Crear nueva reseña en json-server
+      const newReview = await reviewsAPI.create({
+        userId: "u001", // TODO: Usar usuario autenticado real
+        movieId: movieId,
         rating: userRating,
-        review: userReview
+        comment: userReview
       });
+      
+      // Actualizar estado local
+      setMovieReviews(prevReviews => [...prevReviews, newReview]);
+      
+      // Recalcular rating
+      const updatedRating = await utils.calculateMovieRating(movieId);
+      setCalculatedRating(updatedRating);
       
       // Resetear formulario
       setUserRating(0);
       setUserReview('');
-      setIsSubmitting(false);
       
       alert('¡Reseña enviada correctamente!');
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      alert('Error al enviar la reseña. Inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -83,7 +123,9 @@ const MovieDetailPage = () => {
               />
               <div className="absolute top-4 right-4 bg-black/70 rounded-full px-3 py-2 flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                <span className="text-white font-semibold">{movie.averageScore.toFixed(1)}</span>
+                <span className="text-white font-semibold">
+                  {loading ? '...' : calculatedRating.toFixed(1)}
+                </span>
               </div>
             </div>
           </div>
@@ -138,12 +180,12 @@ const MovieDetailPage = () => {
 
             <div className="flex items-center gap-4">
               <StarRating 
-                rating={movie.averageScore} 
+                rating={loading ? 0 : calculatedRating} 
                 size="lg" 
                 showLabel={true}
               />
               <span className="text-zinc-400">
-                {movieComments.length} reseñas
+                {loading ? 'Cargando...' : `${movieComments.length} reseñas`}
               </span>
             </div>
           </div>
@@ -197,18 +239,26 @@ const MovieDetailPage = () => {
             
             <div className="space-y-4">
               {movieComments.length > 0 ? (
-                movieComments.map((comment, index) => {
-                  const user = users.find(u => u.id === comment.userId);
-                  return (
-                    <div key={index} className="border-b border-zinc-700 pb-4 last:border-b-0">
-                      <div className="flex items-center gap-3 mb-2">
+                movieComments.map((review, index) => (
+                  <div key={review.id || index} className="border-b border-zinc-700 pb-4 last:border-b-0">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-3">
                         <User className="h-5 w-5 text-zinc-400" />
-                        <span className="font-medium">{user?.name || 'Usuario'}</span>
+                        <span className="font-medium">Usuario {review.userId}</span>
                       </div>
-                      <p className="text-zinc-300">{comment.text}</p>
+                      <div className="flex items-center gap-1">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-medium">{review.rating}/10</span>
+                      </div>
                     </div>
-                  );
-                })
+                    <p className="text-zinc-300">{review.comment}</p>
+                    {review.createdAt && (
+                      <p className="text-xs text-zinc-500 mt-2">
+                        {new Date(review.createdAt).toLocaleDateString()}
+                      </p>
+                    )}
+                  </div>
+                ))
               ) : (
                 <div className="text-center text-zinc-400 py-8">
                   <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
