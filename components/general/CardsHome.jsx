@@ -1,5 +1,7 @@
 import { Star, Users, TrendingUp, User } from "lucide-react";
 import React from "react";
+import StarRating from "../ui/StarRating";
+
 
 const CardsHome = () => {
   return (
@@ -27,6 +29,9 @@ const CardsHome = () => {
           Califica peliculas del 1 al 10 y descubre los promedios de la
           comunidad
         </p>
+        <div className="mt-4">
+          <StarRating rating={8.5} size="md" />
+        </div>
       </div>
     </div>
   );

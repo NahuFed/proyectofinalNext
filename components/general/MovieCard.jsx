@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Star, Clock, MessageSquareText } from "lucide-react";
+import StarRating from "../ui/StarRating";
 
 export function MovieCard({ movie: m }) {
   const rating =
@@ -56,13 +57,27 @@ export function MovieCard({ movie: m }) {
             </div>
           )}
 
-          {(runtimeText || reviewsCount !== null) && (
-            <div className="mt-4 flex items-center justify-between text-xs text-white/70">
-              <div className="flex items-center gap-1">
-                {runtimeText && (<><Clock className="w-4 h-4" /><span>{runtimeText}</span></>)}
-              </div>
-              <div className="flex items-center gap-1">
-                {reviewsCount !== null && (<><MessageSquareText className="w-4 h-4" /><span>{reviewsCount} reseña{reviewsCount === 1 ? "" : "s"}</span></>)}
+          {(runtimeText || reviewsCount !== null || rating) && (
+            <div className="mt-4 space-y-2">
+              {/* Rating con estrellas */}
+              {rating && (
+                <div className="flex items-center gap-2">
+                  <StarRating 
+                    rating={m.averageScore} 
+                    size="xs" 
+                    showLabel={true}
+                  />
+                </div>
+              )}
+              
+              {/* Info adicional */}
+              <div className="flex items-center justify-between text-xs text-white/70">
+                <div className="flex items-center gap-1">
+                  {runtimeText && (<><Clock className="w-4 h-4" /><span>{runtimeText}</span></>)}
+                </div>
+                <div className="flex items-center gap-1">
+                  {reviewsCount !== null && (<><MessageSquareText className="w-4 h-4" /><span>{reviewsCount} reseña{reviewsCount === 1 ? "" : "s"}</span></>)}
+                </div>
               </div>
             </div>
           )}
