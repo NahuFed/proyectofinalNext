@@ -41,6 +41,14 @@ export const reviewsAPI = {
     return response.json();
   },
 
+  // Verificar si un usuario ya tiene reseña para una película
+  getUserReviewForMovie: async (userId, movieId) => {
+    const response = await fetch(`${API_BASE_URL}/reviews?userId=${userId}&movieId=${movieId}`);
+    if (!response.ok) throw new Error('Error fetching user review');
+    const reviews = await response.json();
+    return reviews.length > 0 ? reviews[0] : null;
+  },
+
   // Crear nueva reseña
   create: async (reviewData) => {
     const response = await fetch(`${API_BASE_URL}/reviews`, {
@@ -56,6 +64,28 @@ export const reviewsAPI = {
     });
     if (!response.ok) throw new Error('Error creating review');
     return response.json();
+  },
+
+  // Crear o actualizar reseña (upsert)
+  createOrUpdate: async (userId, movieId, reviewData) => {
+    // Verificar si ya existe una reseña
+    const existingReview = await reviewsAPI.getUserReviewForMovie(userId, movieId);
+    
+    if (existingReview) {
+      // Actualizar reseña existente
+      return await reviewsAPI.update(existingReview.id, {
+        ...reviewData,
+        userId,
+        movieId
+      });
+    } else {
+      // Crear nueva reseña
+      return await reviewsAPI.create({
+        ...reviewData,
+        userId,
+        movieId
+      });
+    }
   },
 
   // Actualizar reseña
@@ -102,14 +132,19 @@ export const usersAPI = {
 };
 
 // ==================== UTILIDADES ====================
+
+// Función auxiliar para calcular rating promedio
+const calculateAverageRating = (reviews) => {
+  if (!reviews || reviews.length === 0) return 0;
+  const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+  return Number((totalRating / reviews.length).toFixed(1));
+};
+
 export const utils = {
   // Calcular promedio de rating para una película
   calculateMovieRating: async (movieId) => {
     const reviews = await reviewsAPI.getByMovieId(movieId);
-    if (reviews.length === 0) return 0;
-    
-    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-    return Number((totalRating / reviews.length).toFixed(1));
+    return calculateAverageRating(reviews);
   },
 
   // Obtener datos completos de una película con reseñas
@@ -119,17 +154,33 @@ export const utils = {
       reviewsAPI.getByMovieId(movieId)
     ]);
 
-    // Calcular rating promedio
-    const averageRating = reviews.length > 0 
-      ? Number((reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1))
-      : 0;
-
     return {
       ...movie,
       reviews,
-      averageScore: averageRating,
+      averageScore: calculateAverageRating(reviews),
       reviewsCount: reviews.length
     };
+  },
+
+  // Obtener reseñas de una película con nombres de usuarios
+  getMovieReviewsWithUserNames: async (movieId) => {
+    const [reviews, users] = await Promise.all([
+      reviewsAPI.getByMovieId(movieId),
+      usersAPI.getAll()
+    ]);
+
+    // Enriquecer reseñas con información del usuario
+    const reviewsWithUserNames = reviews.map(review => {
+      const user = users.find(u => u.id === review.userId);
+      
+      return {
+        ...review,
+        userName: user ? user.name : `Usuario ${review.userId}`,
+        userEmail: user ? user.email : null
+      };
+    });
+
+    return reviewsWithUserNames;
   },
 
   // Obtener todas las películas con sus ratings calculados
@@ -141,13 +192,9 @@ export const utils = {
 
     return movies.map(movie => {
       const movieReviews = reviews.filter(review => review.movieId === movie.id);
-      const averageScore = movieReviews.length > 0
-        ? Number((movieReviews.reduce((sum, review) => sum + review.rating, 0) / movieReviews.length).toFixed(1))
-        : 0;
-
       return {
         ...movie,
-        averageScore,
+        averageScore: calculateAverageRating(movieReviews),
         reviewsCount: movieReviews.length
       };
     });
