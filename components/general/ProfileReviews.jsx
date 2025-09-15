@@ -13,22 +13,58 @@ export default function ProfileReviews() {
   useEffect(() => {
     (async () => {
       try {
-        // 1) Traer usuario
+        // 1) Traer usuario de la sesión
         const s = await fetch('/api/session', { cache: 'no-store' });
         if (!s.ok) throw new Error('No se pudo obtener la sesión');
-        const { user } = await s.json();
-        if (!user?.id) throw new Error('Sesión inválida');
+        const sessionData = await s.json();
+        const user = sessionData?.user || null;
 
-        // 2) Traer reseñas del usuario + expandir película
+        // intentar varias fuentes de id
+        let userId = user?.id || sessionData?.userId || null;
+
+        // 2) Si no hay id pero sí email, lo resolvemos en JSON Server
+        if (!userId && user?.email) {
+          const u = await fetch(
+            `${API_BASE}/users?email=${encodeURIComponent(user.email)}`
+          );
+          if (!u.ok)
+            throw new Error('No se pudo resolver el usuario por email');
+          const arr = await u.json();
+          userId = arr?.[0]?.id || null;
+        }
+
+        if (!userId) throw new Error('Sesión inválida');
+
+        // 3) Traer reseñas del usuario + expandir película
         const r = await fetch(
           `${API_BASE}/reviews?userId=${encodeURIComponent(
-            user.id
+            userId
           )}&_expand=movie&_sort=createdAt&_order=desc`
         );
         if (!r.ok) throw new Error('No se pudieron obtener tus reseñas');
         const data = await r.json();
 
-        setItems(data || []);
+        /* setItems(data || []); */
+        let items = data || [];
+
+        const needMovieFetch = items.some((it) => !it.movie);
+        if (needMovieFetch && items.length) {
+          const ids = [...new Set(items.map((it) => it.movieId))]; // ids únicos
+          const qs = ids.map((id) => `id=${encodeURIComponent(id)}`).join('&');
+          const mRes = await fetch(`${API_BASE}/movies?${qs}`);
+          if (mRes.ok) {
+            const moviesArr = await mRes.json();
+            const byId = Object.fromEntries(
+              (moviesArr || []).map((m) => [m.id, m])
+            );
+            items = items.map((it) => ({
+              ...it,
+              movie: byId[it.movieId] || it.movie || null,
+            }));
+          }
+        }
+
+        setItems(items);
       } catch (e) {
         setError(e.message || 'Error desconocido');
       } finally {
