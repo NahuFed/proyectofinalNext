@@ -1,0 +1,184 @@
+{
+  "movies": [
+    {
+      "id": "m001",
+      "title": "Inception",
+      "year": 2010,
+      "genre": [
+        "Action",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "synopsis": "Un ladrón especializado en robar secretos mediante sueños compartidos recibe la tarea de implantar una idea en la mente de un empresario.",
+      "cast": [
+        "Leonardo DiCaprio",
+        "Joseph Gordon-Levitt",
+        "Elliot Page"
+      ],
+      "director": "Christopher Nolan",
+      "runtime": 148,
+      "image": "https://www.originalfilmart.com/cdn/shop/products/inception_2010_imax_original_film_art_a_1024x1024.jpg?v=1551890316"
+    },
+    {
+      "id": "m002",
+      "title": "The Shawshank Redemption",
+      "year": 1994,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Un hombre es encarcelado por un crimen que no cometió y encuentra amistad y esperanza mientras cumple su condena.",
+      "cast": [
+        "Tim Robbins",
+        "Morgan Freeman",
+        "Bob Gunton"
+      ],
+      "director": "Frank Darabont",
+      "runtime": 142,
+      "image": "https://m.media-amazon.com/images/I/519NBNHX5BL._AC_.jpg"
+    },
+    {
+      "id": "m003",
+      "title": "The Godfather",
+      "year": 1972,
+      "genre": [
+        "Crime",
+        "Drama"
+      ],
+      "synopsis": "La saga de la familia mafiosa Corleone y su lucha por mantener el poder y la lealtad dentro del crimen organizado.",
+      "cast": [
+        "Marlon Brando",
+        "Al Pacino",
+        "James Caan"
+      ],
+      "director": "Francis Ford Coppola",
+      "runtime": 175,
+      "image": "https://ca-times.brightspotcdn.com/dims4/default/e21ee25/2147483647/strip/false/crop/2093x3000+0+0/resize/1037x1486!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F47%2F95%2Fcbf137037b833a53a724fde3f53e%2Fcfdj8emgq7504ddbn1ibedbziqes-ufxmz-ypi0gordml8oigvx-qxnfyjdexxje48b9jsnhzr2hbbtg9-5bm2ewo-sfvcb9svtpufonjqohy-raixysjlgk7fagt3voiify9grgz0pkj-sysmn1pfblqffyiedjz8nszvhrheowg2imuyrmeklodsplgwx3wmznmclm-gx-cvc7m0lf7h7crd5meu1oztvsd9po-e1pldrzmjwobcwk9h7avlf0y4ew56xkel9filhfyidkf9rpndq4ic7-snlvnin85poimejwzyp6rq-q8qsqvmlvl2xaq3rsy-7axvtxqcpqinvjubaglw5risa6bqkfrpqowvdt29rhgoxnbsbi3dnwzldfjuimuizsg2hody3cu-y1kgk"
+    },
+    {
+      "id": "m006",
+      "title": "The Dark Knight",
+      "year": 2008,
+      "genre": [
+        "Action",
+        "Crime",
+        "Drama"
+      ],
+      "synopsis": "Batman debe enfrentarse al Joker, un criminal caótico que amenaza con sumir a Gotham en el caos.",
+      "cast": [
+        "Christian Bale",
+        "Heath Ledger",
+        "Aaron Eckhart"
+      ],
+      "director": "Christopher Nolan",
+      "runtime": 152,
+      "image": "https://es.web.img2.acsta.net/medias/nmedia/18/66/74/01/20350623.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": "u001",
+      "name": "Walter",
+      "email": "walter@example.com",
+      "password": "walter123"
+    },
+    {
+      "id": "u002",
+      "name": "Laura",
+      "email": "laura@example.com",
+      "password": "laura123"
+    },
+    {
+      "id": "u003",
+      "name": "Carlos",
+      "email": "carlos@example.com",
+      "password": "carlos123"
+    },
+    {
+      "id": "u004",
+      "name": "Sofia",
+      "email": "sofia@example.com",
+      "password": "sofia123"
+    },
+    {
+      "id": "u005",
+      "name": "Diego",
+      "email": "diego@example.com",
+      "password": "diego123"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "r001",
+      "userId": "u001",
+      "movieId": "m001",
+      "rating": 10,
+      "comment": "Una película increíble que me voló la cabeza. Los efectos especiales y la historia son impresionantes.",
+      "createdAt": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "r002",
+      "userId": "u002",
+      "movieId": "m001",
+      "rating": 4,
+      "comment": "No me gustó tanto como esperaba. Demasiado confusa para mi gusto.",
+      "createdAt": "2024-01-16T14:20:00Z"
+    },
+    {
+      "id": "r003",
+      "userId": "u001",
+      "movieId": "m002",
+      "rating": 8,
+      "comment": "Una historia emotiva y bien contada. Actuaciones excepcionales.",
+      "createdAt": "2024-01-17T09:15:00Z"
+    },
+    {
+      "id": "r004",
+      "userId": "u003",
+      "movieId": "m003",
+      "rating": 6,
+      "comment": "Clásico del cine, pero se siente un poco lenta en algunas partes.",
+      "createdAt": "2024-01-18T16:45:00Z"
+    },
+    {
+      "id": "r005",
+      "userId": "u004",
+      "movieId": "m003",
+      "rating": 10,
+      "comment": "Obra maestra absoluta. La actuación de Marlon Brando es legendaria.",
+      "createdAt": "2024-01-19T11:30:00Z"
+    },
+    {
+      "id": "r006",
+      "userId": "u002",
+      "movieId": "m006",
+      "rating": 2,
+      "comment": "No me conectó con la historia. Demasiado oscura.",
+      "createdAt": "2024-01-20T13:10:00Z"
+    },
+    {
+      "id": "r007",
+      "userId": "u005",
+      "movieId": "m006",
+      "rating": 9,
+      "comment": "Heath Ledger como el Joker es simplemente perfecto. RIP.",
+      "createdAt": "2024-01-21T18:25:00Z"
+    },
+    {
+      "id": "r1757894063667",
+      "userId": "u001",
+      "movieId": "m011",
+      "rating": 7,
+      "comment": "es una pelicula genial para aprender de fisica nuclear y de fisica cuantica ",
+      "createdAt": "2025-09-14T23:54:23.667Z"
+    },
+    {
+      "rating": 8,
+      "comment": "muy buena!!",
+      "date": "2025-09-15T18:57:19.538Z",
+      "userId": "u002",
+      "movieId": "m002",
+      "updatedAt": "2025-09-15T18:57:19.547Z",
+      "id": "r1757961721722"
+    }
+  ]
+}
