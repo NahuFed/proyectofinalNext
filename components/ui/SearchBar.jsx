@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchMovies, resetMovies } from '@/store/slices/moviesSlice';
 
 const GENRES = [
@@ -14,9 +14,16 @@ const GENRES = [
 
 export default function SearchBar() {
   const dispatch = useDispatch();
+  const clearVersion = useSelector((s) => s.movies.clearVersion);
   const [q, setQ] = useState('');
   const [year, setYear] = useState('');
   const [genre, setGenre] = useState('all');
+
+  useEffect(() => {
+    setQ('');
+    setYear('');
+    setGenre('all');
+  }, [clearVersion]);
 
   const onSubmit = (e) => {
     e.preventDefault();
