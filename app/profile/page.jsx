@@ -1,6 +1,7 @@
 import ProfileHeader from '@/components/general/ProfileHeader';
 import ProfileReviews from '@/components/general/ProfileReviews';
 import ProfileStats from '@/components/general/ProfileStats';
+import ProfileTabs from '@/components/general/ProfileTabs';
 
 export default function Page() {
   return (
@@ -23,23 +24,7 @@ export default function Page() {
 
         <div className="h-px bg-gray-700 my-8"></div>
 
-        {/* Tabs (placeholder de UI) */}
-        <div className="flex justify-center space-x-6 mb-8">
-          <button className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg">
-            Mis Reseñas
-          </button>
-          <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition duration-300">
-            Mis Calificaciones
-          </button>
-        </div>
-
-        <div className="h-px bg-gray-700 my-8"></div>
-
-        {/* Reseñas reales (con empty state propio) */}
-        <h2 className="text-xl font-semibold text-gray-300 mb-3">
-          Mis reseñas
-        </h2>
-        <ProfileReviews />
+        <ProfileTabs />
       </div>
     </div>
   );
