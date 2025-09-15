@@ -7,7 +7,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { reviewsAPI, utils } from '@/services/api';
 import InteractiveStarRating from '@/components/ui/InteractiveStarRating';
 import StarRating from '@/components/ui/StarRating';
-import { Calendar, Clock, Star, User, MessageCircle, Edit2 } from 'lucide-react';
+import { Calendar, Clock, Star, User, MessageCircle, Edit2, ArrowBigLeft, ArrowLeft, MoveLeft } from 'lucide-react';
+import Link from 'next/link';
 
 const MovieDetailPage = () => {
   const params = useParams();
@@ -146,6 +147,10 @@ const MovieDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
+      <div className="mb-4 px-4 mt-5">
+            <MoveLeft className="inline h-6 w-6 text-gray-300 mr-2"/>
+            <Link href={"/movies"}  ><strong className="text-gray-300 text-2xl">Volver</strong></Link>
+        </div>
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">

@@ -22,40 +22,40 @@ export default function NavegacionComponent() {
   }, []);
 
   return (
-    <nav className="border-b border-border bg-card/50 backdrop-blur-sm">
+    <nav className="pt-2 pb-4 mx-6 bg-card/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Film className="h-8 w-8 text-primary" />
+            <Film className="h-8 w-8 text-fuchsia-800" />
             <h1 className="text-2xl font-black text-foreground" style={{ fontFamily: "var(--font-montserrat)" }}>
               CineReview
             </h1>
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/movies" className="text-foreground hover:text-primary transition-colors">Películas</Link>
-            <Link href="/rankings" className="text-foreground hover:text-primary transition-colors">Rankings</Link>
-            <Link href="/profile" className="text-foreground hover:text-primary transition-colors">Mi Perfil</Link>
+            <Link href="/movies" className="text-foreground hover:text-fuchsia-800 transition-colors">Películas</Link>
+            <Link href="/rankings" className="text-foreground hover:text-fuchsia-800 transition-colors">Rankings</Link>
+            <Link href="/profile" className="text-foreground hover:text-fuchsia-800 transition-colors">Mi Perfil</Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
+              <div className="space-x-4 bg-fuchsia-800 p-2 rounded text-white">
+
               <Link
                 href="/api/logout"
-                className="px-4 py-2 rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors text-red-600"
+                className="px-4 py-2 rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors"
               >
                 Cerrar sesión
               </Link>
+              </div>
             ) : (
-              <>
-                <Link href="/login" className="px-4 py-2 rounded-md text-foreground hover:text-primary transition-colors">
+              <div className="space-x-4 bg-neutral-600 p-2 rounded text-white">
+                <Link href="/login" className="px-4 py-2 rounded-md  hover:text-fuchsia-500 transition-colors">
                   Iniciar Sesión
                 </Link>
-                <Link href="/register" className="px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-                  Registrarse
-                </Link>
-              </>
+              </div>
             )}
           </div>
 
@@ -91,9 +91,6 @@ export default function NavegacionComponent() {
             <div className="space-y-2">
               <Link href="/login" className="block px-4 py-2 rounded-md text-foreground hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>
                 Iniciar Sesión
-              </Link>
-              <Link href="/register" className="block px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors" onClick={() => setIsOpen(false)}>
-                Registrarse
               </Link>
             </div>
           )}
