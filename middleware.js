@@ -4,7 +4,8 @@ import { jwtVerify } from 'jose';
 const COOKIE_NAME = 'session';
 const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 
-const PROTECTED = ['/profile', '/rankings'];
+// const PROTECTED = ['/profile', '/rankings'];
+const PROTECTED = [];
 
 async function getUserFromToken(token) {
   if (!token) return null;
