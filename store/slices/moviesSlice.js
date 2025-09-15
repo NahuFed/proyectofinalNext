@@ -102,7 +102,12 @@ const moviesSlice = createSlice({
 
     // 2. Reset filtros
     resetMovies: (state) => {
-      state.movies = movies.map((m) => ({
+      const base =
+        Array.isArray(state.allMovies) && state.allMovies.length
+          ? state.allMovies
+          : movies; // fallback a los datos iniciales si hiciera falta
+
+      state.movies = base.map((m) => ({
         ...m,
         averageScore: calculateAverage(m.id, state.scores),
       }));
