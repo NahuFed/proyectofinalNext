@@ -16,18 +16,18 @@ const CardsHome = () => {
       </div>
       <div className="bg-zinc-800 rounded p-2 m-2 hover:scale-105 hover:bg-zinc-700 transition-all duration-300 h-[260px] flex flex-col items-center justify-center">
         <Users className="h-12 w-12 text-primary mb-4  text-fuchsia-800"/>
-        <p className="text-xl text-center">Sistema de Calificacion</p>
+        <p className="text-xl text-center">Reseñas Autenticas</p>
         <p className="text-center">
-          Califica peliculas del 1 al 10 y descubre los promedios de la
-          comunidad
+         Lee y escribe reseñas detalladas de tus películas favoritas
+
         </p>
       </div>
       <div className="bg-zinc-800 rounded p-2 m-2 hover:scale-105 hover:bg-zinc-700 transition-all duration-300 h-[260px] flex flex-col items-center justify-center">
         <TrendingUp className="h-12 w-12 text-primary mb-4  text-fuchsia-800"/>
-        <p className="text-xl text-center">Sistema de Calificacion</p>
+        <p className="text-xl text-center">Rankings Populares</p>
         <p className="text-center">
-          Califica peliculas del 1 al 10 y descubre los promedios de la
-          comunidad
+          Descubre las películas más populares y mejor calificadas
+
         </p>
         <div className="mt-4">
           <StarRating rating={8.5} size="md" />
