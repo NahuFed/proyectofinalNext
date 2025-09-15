@@ -178,6 +178,14 @@
       "rating": 1,
       "comment": "Deberian flashear menos, casi me agarra un acv",
       "createdAt": "2025-09-14T22:27:12.239Z"
+    },
+    {
+      "id": "r1757894063667",
+      "userId": "u001",
+      "movieId": "m011",
+      "rating": 7,
+      "comment": "es una pelicula genial para aprender de fisica nuclear y de fisica cuantica ",
+      "createdAt": "2025-09-14T23:54:23.667Z"
     }
   ]
 }
