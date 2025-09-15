@@ -87,6 +87,10 @@ const moviesSlice = createSlice({
         typeof payload === 'object' && payload?.year
           ? Number(payload.year)
           : null;
+      const genreFilter =
+        typeof payload === 'object' && payload?.genre && payload.genre !== 'all'
+          ? String(payload.genre).toLowerCase()
+          : null;
 
       const base =
         Array.isArray(state.allMovies) && state.allMovies.length
@@ -108,7 +112,12 @@ const moviesSlice = createSlice({
 
           const matchesYear = !yearFilter || Number(m.year) === yearFilter;
 
-          return matchesText && matchesYear;
+          const matchesGenre =
+            !genreFilter ||
+            (Array.isArray(m.genre) &&
+              m.genre.some((g) => g.toLowerCase() === genreFilter));
+
+          return matchesText && matchesYear && matchesGenre;
         });
     },
 
