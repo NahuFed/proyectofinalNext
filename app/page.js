@@ -2,6 +2,39 @@
 import CardsHome from "@/components/general/CardsHome";
 import Link from "next/link";
 
+export const metadata = {
+  title: "CineReview - Tu portal de reseñas de películas",
+  description:
+    "Descubre películas, deja tus reseñas y calificaciones, explora el ranking de las más populares y consulta sinopsis, reparto y director. CineReview es tu espacio para opinar sobre cine.",
+  keywords: [
+    "CineReview",
+    "reseñas de películas",
+    "calificaciones de cine",
+    "ranking películas",
+    "sinopsis",
+    "reparto",
+    "directores",
+    "reseñas online",
+  ],
+  authors: [{ name: "CineReview Team" }],
+  openGraph: {
+    title: "CineReview - Reseñas y Calificaciones de Películas",
+    description:
+      "Explora, califica y reseña películas. Consulta detalles, sinopsis y el ranking de las más populares en CineReview.",
+    url: "https://cinereview-sigma.vercel.app/",
+    siteName: "CineReview",
+    images: [
+      {
+        url: "https://cinereview-sigma.vercel.app/logo.png", 
+        width: 600,
+        height: 300,
+        alt: "CineReview - Reseñas y Calificaciones de Películas",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  }
+};
 
 
 
