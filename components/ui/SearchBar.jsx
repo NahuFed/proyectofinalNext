@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchMovies } from '@/store/slices/moviesSlice';
+import { searchMovies, resetMovies } from '@/store/slices/moviesSlice'; // 👈 + resetMovies
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -10,6 +10,11 @@ export default function SearchBar() {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(searchMovies(q)); // filtra desde allMovies
+  };
+
+  const onClear = () => {
+    setQ(''); // limpia el input
+    dispatch(resetMovies()); // restaura la grilla desde allMovies
   };
 
   return (
@@ -29,6 +34,13 @@ export default function SearchBar() {
           className="px-4 py-2 rounded bg-indigo-600 text-white"
         >
           Buscar
+        </button>
+        <button
+          type="button"
+          onClick={onClear}
+          className="px-4 py-2 rounded border border-neutral-700 text-neutral-200 hover:bg-neutral-800"
+        >
+          Limpiar
         </button>
       </div>
     </form>
