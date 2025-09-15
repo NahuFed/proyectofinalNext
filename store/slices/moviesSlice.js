@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { movies, users, scores, comments } from "@/data/data";
-import { utils, reviewsAPI } from "@/services/api";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { movies, users, scores, comments } from '@/data/data';
+import { utils, reviewsAPI } from '@/services/api';
 
 //  ASYNC THUNKS para API calls
 export const fetchMoviesWithRatings = createAsyncThunk(
@@ -15,7 +15,7 @@ export const fetchMoviesWithRatings = createAsyncThunk(
       return movies.map((m) => ({
         ...m,
         averageScore: calculateAverage(m.id, scores),
-        reviewsCount: 0
+        reviewsCount: 0,
       }));
     }
   }
@@ -28,21 +28,21 @@ export const addReview = createAsyncThunk(
       userId,
       movieId,
       rating,
-      comment
+      comment,
     });
-    
+
     // Recalcular rating de la película
     const updatedRating = await utils.calculateMovieRating(movieId);
-    
+
     return {
       review: newReview,
       movieId,
-      updatedRating
+      updatedRating,
     };
   }
 );
 
-//  HELPERS 
+//  HELPERS
 const calculateAverage = (movieId, scores) => {
   const movieScores = scores.filter((s) => s.movieId === movieId);
   return movieScores.length
@@ -54,37 +54,48 @@ const calculateAverage = (movieId, scores) => {
 };
 
 const initialState = {
+  allMovies: movies.map((m) => ({
+    ...m,
+    averageScore: calculateAverage(m.id, scores),
+    reviewsCount: 0,
+  })),
   movies: movies.map((m) => ({
     ...m,
     averageScore: calculateAverage(m.id, scores),
-    reviewsCount: 0
+    reviewsCount: 0,
   })),
   users,
   scores,
   comments,
   loading: false,
   error: null,
-  usingAPI: false // Flag para saber si estamos usando API o datos locales
+  usingAPI: false, // Flag para saber si estamos usando API o datos locales
 };
 
-//  SLICE 
+//  SLICE
 const moviesSlice = createSlice({
-  name: "movies",
+  name: 'movies',
   initialState,
   reducers: {
     // 1. Buscar películas
     searchMovies: (state, action) => {
-      const query = action.payload.toLowerCase().trim();
+      const query = (action.payload ?? '').toLowerCase().trim();
 
-      state.movies = state.movies
+      const base =
+        Array.isArray(state.allMovies) && state.allMovies.length
+          ? state.allMovies
+          : state.movies;
+
+      state.movies = base
         .map((m) => ({
           ...m,
           averageScore: calculateAverage(m.id, state.scores),
         }))
         .filter(
           (m) =>
-            m.title.toLowerCase().includes(query) ||
-            m.genre.some((g) => g.toLowerCase().includes(query)) ||
+            m.title?.toLowerCase().includes(query) ||
+            (Array.isArray(m.genre) &&
+              m.genre.some((g) => g.toLowerCase().includes(query))) ||
             String(m.year).includes(query)
         );
     },
@@ -127,7 +138,7 @@ const moviesSlice = createSlice({
       const { userId, movieId, text } = action.payload;
 
       if (!userId || !movieId) return;
-      if (!text || text.trim() === "") return;
+      if (!text || text.trim() === '') return;
 
       state.comments.push({ userId, movieId, text: text.trim() });
     },
@@ -141,6 +152,8 @@ const moviesSlice = createSlice({
       })
       .addCase(fetchMoviesWithRatings.fulfilled, (state, action) => {
         state.loading = false;
+        state.movies = action.payload;
+        state.allMovies = action.payload;
         state.movies = action.payload;
         state.usingAPI = true;
       })
@@ -157,7 +170,7 @@ const moviesSlice = createSlice({
       .addCase(addReview.fulfilled, (state, action) => {
         state.loading = false;
         const { movieId, updatedRating } = action.payload;
-        
+
         // Actualizar rating de la película
         const movie = state.movies.find((m) => m.id === movieId);
         if (movie) {
@@ -172,7 +185,7 @@ const moviesSlice = createSlice({
   },
 });
 
-//  SELECTORS 
+//  SELECTORS
 
 // Seleccionar una película por ID
 export const selectMovieById = (id) =>
