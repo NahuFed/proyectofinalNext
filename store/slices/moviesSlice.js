@@ -54,6 +54,7 @@ const calculateAverage = (movieId, scores) => {
 };
 
 const initialState = {
+  clearVersion: 0,
   allMovies: movies.map((m) => ({
     ...m,
     averageScore: calculateAverage(m.id, scores),
@@ -132,6 +133,9 @@ const moviesSlice = createSlice({
         ...m,
         averageScore: calculateAverage(m.id, state.scores),
       }));
+
+      // avisar a la UI que se limpió (SearchBar va a resetear sus inputs)
+      state.clearVersion = (state.clearVersion || 0) + 1;
     },
 
     // 3. Agregar / actualizar puntuación
