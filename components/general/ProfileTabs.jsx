@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import ProfileReviews from '@/components/general/ProfileReviews';
+import ProfileRatings from '@/components/general/ProfileRatings';
 
 export default function ProfileTabs() {
   const [tab, setTab] = useState('reviews');
@@ -40,9 +41,9 @@ export default function ProfileTabs() {
           <h2 className="text-xl font-semibold text-gray-300 mb-3">
             Mis calificaciones
           </h2>
-          <p className="text-neutral-400">
-            Próximo paso: listar solo calificaciones.
-          </p>
+          <div className="text-neutral-400">
+            <ProfileRatings />
+          </div>
         </>
       )}
     </>
