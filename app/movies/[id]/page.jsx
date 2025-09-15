@@ -1,10 +1,8 @@
 import MovieDetail from "@/components/movies/MovieDetail";
-import { moviesAPI, utils } from "@/services/api";
-
-
+import { moviesAPI } from "@/services/api";
 
 export async function generateMetadata({ params }) {
-  const { id } =await params;
+  const { id } = await params;
 
   let movie;
   try {
@@ -54,23 +52,6 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function MovieDetailPage({ params }) {
-  const { id } =await  params;
-
-  try {
-    const movieData = await utils.getMovieWithReviews(id);
-
-    return <MovieDetail movieData={movieData} />;
-  } catch (error) {
-    console.error("Error fetching movie data:", error);
-    return (
-      <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">
-            Error al cargar
-          </h1>
-          <p className="text-zinc-400">No pudimos cargar la película.</p>
-        </div>
-      </div>
-    );
-  }
+  const { id } = await params;
+  return <MovieDetail id={id} />;
 }

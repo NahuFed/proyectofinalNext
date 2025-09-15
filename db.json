@@ -164,28 +164,21 @@
       "createdAt": "2024-01-21T18:25:00Z"
     },
     {
-      "id": "r1757888802470",
-      "userId": "u001",
-      "movieId": "m001",
-      "rating": 8,
-      "comment": "Me dejo re loco esta pelicula esta de ensueño",
-      "createdAt": "2025-09-14T22:26:42.470Z"
-    },
-    {
-      "id": "r1757888832239",
-      "userId": "u001",
-      "movieId": "m001",
-      "rating": 1,
-      "comment": "Deberian flashear menos, casi me agarra un acv",
-      "createdAt": "2025-09-14T22:27:12.239Z"
-    },
-    {
       "id": "r1757894063667",
       "userId": "u001",
       "movieId": "m011",
       "rating": 7,
       "comment": "es una pelicula genial para aprender de fisica nuclear y de fisica cuantica ",
       "createdAt": "2025-09-14T23:54:23.667Z"
+    },
+    {
+      "rating": 8,
+      "comment": "muy buena!!",
+      "date": "2025-09-15T18:57:19.538Z",
+      "userId": "u002",
+      "movieId": "m002",
+      "updatedAt": "2025-09-15T18:57:19.547Z",
+      "id": "r1757961721722"
     }
   ]
 }
