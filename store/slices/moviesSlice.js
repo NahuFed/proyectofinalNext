@@ -79,7 +79,14 @@ const moviesSlice = createSlice({
   reducers: {
     // 1. Buscar películas
     searchMovies: (state, action) => {
-      const query = (action.payload ?? '').toLowerCase().trim();
+      const payload = action.payload;
+      const query = (typeof payload === 'string' ? payload : payload?.q || '')
+        .toLowerCase()
+        .trim();
+      const yearFilter =
+        typeof payload === 'object' && payload?.year
+          ? Number(payload.year)
+          : null;
 
       const base =
         Array.isArray(state.allMovies) && state.allMovies.length
@@ -91,13 +98,18 @@ const moviesSlice = createSlice({
           ...m,
           averageScore: calculateAverage(m.id, state.scores),
         }))
-        .filter(
-          (m) =>
+        .filter((m) => {
+          const matchesText =
+            !query ||
             m.title?.toLowerCase().includes(query) ||
             (Array.isArray(m.genre) &&
               m.genre.some((g) => g.toLowerCase().includes(query))) ||
-            String(m.year).includes(query)
-        );
+            String(m.year).includes(query);
+
+          const matchesYear = !yearFilter || Number(m.year) === yearFilter;
+
+          return matchesText && matchesYear;
+        });
     },
 
     // 2. Reset filtros
