@@ -244,6 +244,4 @@ export const hasUserRatedMovie = (userId, movieId) =>
 export const { searchMovies, resetMovies, addRating, addComment } =
   moviesSlice.actions;
 
-export { fetchMoviesWithRatings, addReview };
-
 export default moviesSlice.reducer;
