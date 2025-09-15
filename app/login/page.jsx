@@ -2,6 +2,36 @@ import { Film } from "lucide-react";
 import { actionsLoginInicio } from "./actions";
 import LoginForm from "@/components/auth/LoginForm";
 
+export const metadata = {
+  title: "Iniciar Sesión - CineReview",
+  description:
+    "Accede a tu cuenta de CineReview para dejar reseñas, calificaciones y explorar tu historial de películas.",
+  keywords: [
+    "login CineReview",
+    "iniciar sesión CineReview",
+    "entrar CineReview",
+    "reseñas de películas",
+    "calificaciones de cine",
+  ],
+  openGraph: {
+    title: "Iniciar Sesión - CineReview",
+    description:
+      "Accede a tu cuenta y participa en la comunidad de reseñas y calificaciones de CineReview.",
+    url: "https://cinereview-sigma.vercel.app/login",
+    siteName: "CineReview",
+    images: [
+      {
+        url: "https://cinereview-sigma.vercel.app/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Logo de CineReview",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  }
+};
+
 export default async function LoginPage({ searchParams }) {
   const sp = (await searchParams) || {};
   const message =

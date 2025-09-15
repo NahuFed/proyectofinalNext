@@ -2,6 +2,40 @@ import MovieComponent from '@/components/general/MovieComponent';
 import { TrendingUp } from 'lucide-react';
 import SearchBar from '@/components/ui/SearchBar';
 
+export const metadata = {
+  title: "Películas - CineReview",
+  description:
+    "Explora el catálogo de películas en CineReview. Busca por nombre, género o año, consulta sinopsis, reparto, director y deja tus reseñas y calificaciones.",
+  keywords: [
+    "películas",
+    "reseñas",
+    "calificaciones",
+    "cine",
+    "CineReview",
+    "ranking de películas",
+    "sinopsis de películas",
+  ],
+  openGraph: {
+    title: "Películas - CineReview",
+    description:
+      "Descubre películas, explora detalles, deja reseñas y califica tus favoritas en CineReview.",
+    url: "https://cinereview-sigma.vercel.app/movies",
+    siteName: "CineReview",
+    images: [
+      {
+        url: "https://cinereview-sigma.vercel.app/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Logo de CineReview",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  }
+};
+
+
+
 const page = () => {
   return (
     <div>
