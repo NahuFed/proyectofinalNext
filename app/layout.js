@@ -7,10 +7,10 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata = {
-  title: "ImDB Next App",
-  description: "Una aplicación de reseñas de películas construida con Next.js",
+  title: "CineReview - Reseñas y Calificaciones de Películas",
+  description:
+    "Explora películas como en IMDb: buscá por nombre, género o año. Descubrí sinopsis, reparto y director. Califica del 1 al 10, deja reseñas y consultá el ranking de las más populares en CineReview.",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
