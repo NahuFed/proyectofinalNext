@@ -1,5 +1,6 @@
 import ProfileHeader from '@/components/general/ProfileHeader';
 import ProfileReviews from '@/components/general/ProfileReviews';
+import ProfileStats from '@/components/general/ProfileStats';
 
 export default function Page() {
   return (
@@ -17,25 +18,8 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Stats Grid (dejamos la UI tal cual por ahora) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg">
-            <p className="text-3xl font-bold text-blue-400">0</p>
-            <p className="text-gray-400 mt-2">Reseñas</p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg">
-            <p className="text-3xl font-bold text-purple-400">3</p>
-            <p className="text-gray-400 mt-2">Calificaciones</p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg">
-            <p className="text-3xl font-bold text-green-400">9.0</p>
-            <p className="text-gray-400 mt-2">Promedio</p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg">
-            <p className="text-3xl font-bold text-red-400">3</p>
-            <p className="text-gray-400 mt-2">Películas vistas</p>
-          </div>
-        </div>
+        {/* Stats dinámicos */}
+        <ProfileStats />
 
         <div className="h-px bg-gray-700 my-8"></div>
 
